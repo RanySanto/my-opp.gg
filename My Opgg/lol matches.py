@@ -1,5 +1,7 @@
+from flask import Flask, render_template, request
 import requests
 from API_KEY import API_KEY
+
 
 # game_name = 'raynerjun'
 # tag_line = 'robck'
@@ -7,6 +9,11 @@ from API_KEY import API_KEY
 
 class MyOpgg():
     []
+    
+def get_player_by_puuid(puuid):
+    player_by_puuid = f'https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}?api_key={API_KEY}'
+    player = requests.get(player_by_puuid).json()
+    return f'{player['gameName']} #{player['tagLine']}'
 
 def get_player():
     game_name = 'raynerjun'
@@ -39,36 +46,34 @@ def get_match_info():
 
 def get_match_players():
     match_info = get_match_info()
-    return match_info
     
-    # def get_champions():
-    #     nonlocal match_info
-    #     match_champions = []
-    #     i = 0
-    #     for player in match_info['participants']:
-    #         champion = match_info['participants'][i]['championName']
-    #         champion = match_info['participants'][i]['lane']
-    #         match_champions.append(champion)
-    #         if i < len(match_info['participants']):
-    #             i += 1
-    #     return match_champions
-    # return get_champions()
-#     def get_players(match_info):
-#         match_players = []
-#     #     i = 0
-#     #     for player in match_info['participants']:
-#     #         champion = match_info['participants'][i]['championName']
-#     #         match_players.append(champion)
-#     #         if i < len(match_info['participants']):
-#     #             i += 1
-#     #     return match_players
-#     #   return get_players(match_info)
-#         # return match_info['participants']
-#     # get_players(match_info)
+    def get_champions():
+        nonlocal match_info
+        
+        match_players = []
+        i = 0
+        for player in match_info['participants']:
+            champion = match_info['participants'][i]['championName']
+            individualPosition = match_info['participants'][i]['individualPosition']
+            kills = match_info['participants'][i]['kills']
+            deaths = match_info['participants'][i]['deaths']
+            assists = match_info['participants'][i]['assists']
+            puuid = match_info['participants'][i]['puuid']
+            summonerName = get_player_by_puuid(puuid)
+            # item = match_info['participants'][i]['item0']
+            totalMinionsKilled = match_info['participants'][i]['totalMinionsKilled']
+            match_players.append({
+                'champion':f'{champion}', 
+                 'individualPosition':f'{individualPosition}', 
+                 'kills':f'{kills}', 
+                 'deaths':f'{deaths}', 
+                 'assists':f'{assists}', 
+                 'summonerName':f'{summonerName}', 
+                 'totalMinionsKilled':f'{totalMinionsKilled}'
+                 })
+            if i < len(match_info['participants']):
+                i += 1
+        return match_players
+    return get_champions()
 
-# print(get_match_players()['participants'][0]['summonerId'])
-print(get_player())
-
-
-# champion = match_info['participants'][i]['championName']
-# lane = match_info['participants'][i]['lane']
+# print(list(get_match_players()))
