@@ -101,28 +101,36 @@ def get_players_info(match_info):
 
 # def get_search_player_info(match_info):
 
-nick = input('Type your nick\n')
-nickname = set_nickname(nick)[0]
-tagline = set_nickname(nick)[1]
+# nick = input('Type your nick\n')
+# nickname = set_nickname(nick)[0]
+# tagline = set_nickname(nick)[1]
 # print(nickname, tagline)
 
 # get each champion and info for the first 20 matches of the player
-player_info = get_match(nickname, tagline, 'americas')
+player_info = get_match('raynerjun', 'robck', 'americas')
 
 def get_search_player_info(player_info):
     player_scores = []
-    i = 0
+    matchIndex = 0
     for match in player_info:
-        i = 0
-        if not player_info[i]['riotIdGameName'] == 'RaynerJun#robck':
-            i += 1
-            continue
-        else:
-            player_scores.append(player_info[i])
-            i+=1
-    
+        player_score = []
+        playerIndex = 0
+        for player in player_info[matchIndex]:
+            if player_info[matchIndex][playerIndex]['riotIdGameName'] == 'RaynerJun#robck':
+                playerid = player_info[matchIndex][playerIndex]
+                player_score.append(playerid)
+                playerIndex+=1
+            else:
+                playerIndex+=1
+                continue
+        matchIndex+=1
+        player_scores.append(player_score)
     return player_scores
+        
+    # return player_scores
     
+# print(player_info)
+
 print(get_search_player_info(player_info))
 
 
