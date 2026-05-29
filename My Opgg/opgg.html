@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="player">
+            <h1>Search Player</h1>
+            <div class="player-input">
+                <select name="" id="">
+                    <option value="americas">americas</option>
+                    <option value="asia">asia</option>
+                    <option value="europe">europe</option>
+                </select>
+                <input type="text" id="summonerName" placeholder="Type your nickname + #tagline">
+                <button>search</button>
+            </div>
+        </div>
+        <div class="rank">
+            <p>{{ rank }}</p>
+            <h3>{{ summonerName }}{{ tagLine }}</h3>
+        </div>
+        <ul>
+            <li class="match-card">
+                <div class="match-info">
+                    <p class="gamemode">RANKED SOLO</p><p>37 minutes</p><p class="details">Match Details</p>
+                </div>
+                <div class="match-stats">
+                    <div>
+                        <div class="champion"></div>
+                        <span class="lane"></span>
+                            <div>
+                                <div class="spell"></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                    </div>
+                    
+                    <div class="scores-container">
+                        <div class="match-scores">
+                        <p>9/2/4</p>
+                        <p id="kda">6.5 KDA</p>
+                    </div> 
+                    <div class="match-scores">
+                        <p> 192(7.0)CS</p>
+                        <p>+32 @ 10m</p>
+                    </div>
+                    <div class="match-scores">
+                        <p> 41.9% KP</p>
+                        <p> 10 (0) / 0 <span class="ward-icon"></span> </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="match-achievements"><div class="achievements lp">+23LP</div><div><div class="achievements"></div></div>
+            </li>
+        </ul>
+    </div>
+    <script src="rendering.js"></script>
+</body>
+</html>
