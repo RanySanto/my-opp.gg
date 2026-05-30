@@ -28,38 +28,55 @@
             <h3>{{ summonerName }}{{ tagLine }}</h3>
         </div>
         <ul>
-            <li class="match-card">
+            <li class="match-card match-win">
                 <div class="match-info">
-                    <p class="gamemode">RANKED SOLO</p><p>37 minutes</p><p class="details">Match Details</p>
+                    <p class="gamemode" id="gamemode">RANKED SOLO</p><p id="match-duration">37 minutes</p><p class="details">Match Details</p>
                 </div>
-                <div class="match-stats">
+                <div class="flex">
+<div>
                     <div>
-                        <div class="champion"></div>
-                        <span class="lane"></span>
-                            <div>
-                                <div class="spell"></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
+                        <div class="match-stats"> 
+                            <div class="champion-container">
+                                <div class="champion win"></div>
+                                <span class="lane win"></span>
+                                <div class="spell-slots">
+                                    <div class="spell1 spell" id="spell1"></div>
+                                    <div class="rune1 spell" id="major-rune"></div>
+                                    <div class="spell2 spell" id="spell2"></div>
+                                    <div class="rune2 spell" id="minor-rune"></div>
+                                </div>
                             </div>
+                            <div class="scores-container">
+                                <div class="match-scores">
+                                    <p id="kda">9/2/4</p>
+                                    <p id="kda-score">6.5 KDA</p>
+                                </div> 
+                                <div class="match-scores">
+                                    <p id="cs"> 192(7.0)CS</p>
+                                    <p id="cs-per-minute">+32 @ 10m</p>
+                                </div>
+                                <div class="match-scores">
+                                    <p id="participation"> 41.9% KP</p>
+                                    <p id="ward-score"> 10 (0) / 0 <span class="ward-icon"></span> </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="scores-container">
-                        <div class="match-scores">
-                        <p>9/2/4</p>
-                        <p id="kda">6.5 KDA</p>
-                    </div> 
-                    <div class="match-scores">
-                        <p> 192(7.0)CS</p>
-                        <p>+32 @ 10m</p>
-                    </div>
-                    <div class="match-scores">
-                        <p> 41.9% KP</p>
-                        <p> 10 (0) / 0 <span class="ward-icon"></span> </p>
-                    </div>
+                    <div class="match-achievements">
+                        <div class="achievements lp">+23LP</div>
+                        <div class="achievements"></div>
                     </div>
                 </div>
-                <div class="match-achievements"><div class="achievements lp">+23LP</div><div><div class="achievements"></div></div>
+                    <div class="game-champions">
+                        <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon top"></div><div class="champions-icon"></div><p>nick</p></div>
+                        <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon jg"></div><div class="champions-icon"></div><p>nick</p></div>
+                        <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon mid"></div><div class="champions-icon"></div><p>nick</p></div>
+                        <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon adc"></div><div class="champions-icon"></div><p>nick</p></div>
+                        <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon sup"></div><div class="champions-icon"></div><p>nick</p></div>
+                    </div>
+                </div>
+                </div>
+                
             </li>
         </ul>
     </div>
