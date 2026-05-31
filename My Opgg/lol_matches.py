@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 from API_KEY import API_KEY
+import json
 
 # class MyOpgg:
 #     def __init__(self, game_name, tag_line, region):
@@ -44,8 +45,7 @@ def get_player(game_name, tag_line, region):
     puuid = player['puuid']
     return puuid
         
-def get_match(game_name, tag_line, region):
-    puuid = get_player(game_name, tag_line, region)
+def get_match(puuid):
     get_matches= f'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=20&api_key={API_KEY}'
     match_list = requests.get(get_matches).json()
     match_history = []
@@ -101,13 +101,12 @@ def get_players_info(match_info):
 
 # def get_search_player_info(match_info):
 
-# nick = input('Type your nick\n')
-# nickname = set_nickname(nick)[0]
-# tagline = set_nickname(nick)[1]
 # print(nickname, tagline)
 
 # get each champion and info for the first 20 matches of the player
-player_info = get_match('raynerjun', 'robck', 'americas')
+# player_info = get_match('raynerjun', 'robck', 'americas')
+
+# print(get_match(set_nickname('raynerjun#robck')[0], set_nickname('raynerjun#robck')[1], 'americas' ))
 
 def get_search_player_info(player_info):
     player_scores = []
@@ -129,9 +128,10 @@ def get_search_player_info(player_info):
         
     # return player_scores
     
-# print(player_info)
+# player_match_history = get_search_player_info(player_info)
 
-print(get_search_player_info(player_info))
+# with open("player_match_history.json", mode="w", encoding="utf-8") as write_file:
+#     json.dump(player_match_history, write_file, indent=0)
 
 
 # print(get_player_by_puuid('59Noj7T2aklO7Og0dHpIdLAQ0sUE22Af8O8gtKzGbTvgiiYy4BQAPTx1-EtMxZSgsQG9qkZFr9pYeA'))
