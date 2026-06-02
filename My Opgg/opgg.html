@@ -8,76 +8,77 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css')}}"/>
 </head>
 <body>
     <div class="container">
         <div class="player">
             <h1>Search Player</h1>
-            <div class="player-input">
-                <select name="" id="">
-                    <option value="americas">americas</option>
-                    <option value="asia">asia</option>
-                    <option value="europe">europe</option>
-                </select>
-                <input type="text" id="summonerName" placeholder="Type your nickname + #tagline">
-                <button>search</button>
-            </div>
+            <select name="" id="">
+                <option value="">americas</option>
+            </select>
+            <form action="/templates/opgg.html" class="player-input">
+                <input type="text" name="nick" id="nick" placeholder="Enter your nickname + #tagline">
+                <button type="submit">Submit</button>
+            </form>
         </div>
         <div class="rank">
             <p>{{ rank }}</p>
-            <h3>{{ summonerName }}{{ tagLine }}</h3>
+            <h3>{{ summonerName }}</h3>
         </div>
         <ul>
-            <li class="match-card match-win">
-                <div class="match-info">
-                    <p class="gamemode" id="gamemode">RANKED SOLO</p><p id="match-duration">37 minutes</p><p class="details">Match Details</p>
-                </div>
-                <div class="flex">
-<div>
-                    <div>
-                        <div class="match-stats"> 
-                            <div class="champion-container">
-                                <div class="champion win"></div>
-                                <span class="lane win"></span>
-                                <div class="spell-slots">
-                                    <div class="spell1 spell" id="spell1"></div>
-                                    <div class="rune1 spell" id="major-rune"></div>
-                                    <div class="spell2 spell" id="spell2"></div>
-                                    <div class="rune2 spell" id="minor-rune"></div>
+            {% for summoner in flat_list %}
+                <li class="match-card match-win">
+                    <div class="match-info">
+                        <p class="gamemode" id="gamemode">RANKED SOLO</p><p id="match-duration">37 minutes</p><p class="details">Match Details</p>
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <div>
+                                <div class="match-stats"> 
+                                    <div class="champion-container">
+                                        <div class="champion win" id="champion">{{ summoner.champion }}</div>
+                                        <span class="lane win">{{ summoner.individualPosition }}</span>
+                                        <!-- <div class="spell-slots">
+                                            <div class="spell1 spell" id="spell1"></div>
+                                            <div class="rune1 spell" id="major-rune"></div>
+                                            <div class="spell2 spell" id="spell2"></div>
+                                            <div class="rune2 spell" id="minor-rune"></div>
+                                        </div> -->
+                                    </div>
+                                    <div class="scores-container">
+                                        <div class="match-scores">
+                                            <p id="kda">{{ summoner.kills }}/{{ summoner.deaths }}/{{ summoner.assists }}</p>
+                                            <p id="kda-score">6.5 KDA</p>
+                                        </div> 
+                                        <div class="match-scores">
+                                            <p id="cs"> {{ summoner.totalMinionsKilled }}(7.0)CS</p>
+                                            <p id="cs-per-minute">+32 @ 10m</p>
+                                        </div>
+                                        <div class="match-scores">
+                                            <p id="participation"> 41.9% KP</p>
+                                            <p id="ward-score"> 10 (0) / 0 <span class="ward-icon"></span> </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="scores-container">
-                                <div class="match-scores">
-                                    <p id="kda">9/2/4</p>
-                                    <p id="kda-score">6.5 KDA</p>
-                                </div> 
-                                <div class="match-scores">
-                                    <p id="cs"> 192(7.0)CS</p>
-                                    <p id="cs-per-minute">+32 @ 10m</p>
-                                </div>
-                                <div class="match-scores">
-                                    <p id="participation"> 41.9% KP</p>
-                                    <p id="ward-score"> 10 (0) / 0 <span class="ward-icon"></span> </p>
-                                </div>
+                            <div class="match-achievements">
+                                <div class="achievements lp">+{{ lp }}LP</div>
+                                <!-- <div class="achievements"></div> -->
                             </div>
                         </div>
+                            <!-- <div class="game-champions">
+                                <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon top"></div><div class="champions-icon"></div><p>nick</p></div>
+                                <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon jg"></div><div class="champions-icon"></div><p>nick</p></div>
+                                <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon mid"></div><div class="champions-icon"></div><p>nick</p></div>
+                                <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon adc"></div><div class="champions-icon"></div><p>nick</p></div>
+                                <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon sup"></div><div class="champions-icon"></div><p>nick</p></div>
+                            </div> -->
+                        </div>
                     </div>
-                    <div class="match-achievements">
-                        <div class="achievements lp">+23LP</div>
-                        <div class="achievements"></div>
-                    </div>
-                </div>
-                    <div class="game-champions">
-                        <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon top"></div><div class="champions-icon"></div><p>nick</p></div>
-                        <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon jg"></div><div class="champions-icon"></div><p>nick</p></div>
-                        <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon mid"></div><div class="champions-icon"></div><p>nick</p></div>
-                        <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon adc"></div><div class="champions-icon"></div><p>nick</p></div>
-                        <div class="game-lane"><p>nick</p><div class="champions-icon"></div><div class="lane-icon sup"></div><div class="champions-icon"></div><p>nick</p></div>
-                    </div>
-                </div>
-                </div>
-                
-            </li>
+                    
+                </li>
+            {% endfor %}
         </ul>
     </div>
     <script src="rendering.js"></script>
