@@ -8,7 +8,7 @@ class MyOpgg:
         self.id = tag_line
         self.region = region
         
-    def get_player_matches():
+    def get_player_matches(): 
         []
 
 
