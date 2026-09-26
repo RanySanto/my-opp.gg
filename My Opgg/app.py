@@ -4,7 +4,7 @@ from lol_matches import set_nickname
 from lol_matches import get_search_player_info
 from lol_matches import get_player
 from waitress import serve 
- 
+  
 app = Flask(__name__)   
  
 @app.route('/')
