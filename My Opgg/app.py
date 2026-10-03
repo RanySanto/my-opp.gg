@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from lol_matches import get_match
 from lol_matches import set_nickname
-from lol_matches import get_search_player_info
+from lol_matches import get_search_player_info 
 from lol_matches import get_player
 from waitress import serve 
   
